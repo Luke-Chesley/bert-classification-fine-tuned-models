@@ -1,0 +1,12 @@
+/News_Category_Dataset_v3.json
+/__pycache__
+/bert-finetuned-amazon-reviews-multi-train-100k
+/bert-finetuned-amazon-reviews-multi-train-10k
+/bert-finetuned-news-headlines
+/bert-finetuned-sem_eval-english
+/bert-finetuned-wiki-movie-plots
+/datasets
+/distilbert-finetuned-amazon-reviews-multi-train-10k
+/label_dicts
+/nlp classification.ipynb
+/tmp_trainer
