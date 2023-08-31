@@ -76,7 +76,66 @@ For each model I used the corresponding tokenizer from huggingface. I used the s
 The max_length of 256 and subsequent truncation does cut off some data but my GPU (RTX 3070, 8gb VRam) was not able to handle anything larger with training batch size of 8. The padding is on the right as is recommended.
 
 
-## Training
+# Training
+
+"""
+    batch_size = 8
+    metric_name = "f1"
+
+    args = TrainingArguments(
+        f"bert-finetuned-sem_eval-english",
+        evaluation_strategy="epoch",
+        save_strategy="epoch",
+        learning_rate=2e-5,
+        per_device_train_batch_size=batch_size,
+        per_device_eval_batch_size=batch_size,
+        num_train_epochs=5,
+        weight_decay=0.01,
+        load_best_model_at_end=True,
+        metric_for_best_model=metric_name,
+        # push_to_hub=True,
+    )
+
+    def multi_label_metrics(
+        predictions, labels, threshold=0.5
+    ):  # threshold = confidence threshold, important. 0.5 doesnt always work
+        # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
+        sigmoid = torch.nn.Sigmoid()
+        probs = sigmoid(torch.Tensor(predictions))
+        # use threshold to turn them into int predictions
+        y_pred = np.zeros(probs.shape)
+        y_pred[np.where(probs >= threshold)] = 1
+        # compute metrics
+        y_true = labels
+        f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average="micro")
+        roc_auc = roc_auc_score(y_true, y_pred, average="micro")
+        accuracy = accuracy_score(y_true, y_pred)
+        # return as dictionary
+        metrics = {"f1": f1_micro_average, "roc_auc": roc_auc, "accuracy": accuracy}
+        return metrics
+
+
+    def compute_metrics(p: EvalPrediction):
+        preds = p.predictions[0] if isinstance(p.predictions, tuple) else p.predictions
+        result = multi_label_metrics(predictions=preds, labels=p.label_ids)
+        return result
+
+
+    trainer = Trainer(
+        model,
+        args,
+        train_dataset=encoded_dataset["train"],
+        eval_dataset=encoded_dataset["validation"],
+        tokenizer=tokenizer,
+        compute_metrics=compute_metrics,
+    )  
+
+    trainer.train()
+
+
+"""
+
+
 
 
 
