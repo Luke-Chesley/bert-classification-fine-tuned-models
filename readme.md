@@ -26,9 +26,9 @@ From [https://huggingface.co/distilbert-base-uncased]
 
 Model size: 67M params
 
-# Training
 
-## Preprocessing
+
+# Preprocessing
 
 For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. (Still tweaking, this is current as of 8/31/23, what else to add?)
 
@@ -65,7 +65,7 @@ I then one hot encoded the classes and converted that pandas df into a dataset f
 
 Next I made a dict of the classes to correspond with an int.
 
-## Tokenizer
+# Tokenizer
 
 For each model I used the corresponding tokenizer from huggingface. I used the same parameters for each.
 
