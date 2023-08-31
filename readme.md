@@ -10,8 +10,8 @@ From [https://huggingface.co/bert-base-uncased]:
 >This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences, for instance, you can train a standard classifier using the features produced by the BERT model as inputs.
 
 Datasets used to train bert-base-uncased:
-* [https://huggingface.co/datasets/wikipedia] wikipedia articles
-* [https://huggingface.co/datasets/bookcorpus] collection of book texts
+* [https://huggingface.co/datasets/wikipedia] English wikipedia 
+* [https://huggingface.co/datasets/bookcorpus] 11,038 unpublished(?) books
 
 Model size: 110M params
 
@@ -28,7 +28,14 @@ Model size: 67M params
 
 # Training
 
-For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. 
+## Preprocessing
+
+For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. (Still tweaking, this is current as of 8/31/23, what else to add?)
+
+Functionally includes:
+* Expanding contractions
+* Removing punctuation and any formatting characters
+* Lowercase
 
 '''
 
@@ -53,6 +60,31 @@ For review text data, I combined the title and review body for simplicity and se
         return fixed_string
 
 '''    
+
+I then one hot encoded the classes and converted that pandas df into a dataset from the datasets library with a train,test, and validation dataset. These are easier to us than pandas with the transformers library for training. 
+
+Next I made a dict of the classes to correspond with an int.
+
+## Tokenizer
+
+For each model I used the corresponding tokenizer from huggingface. I used the same parameters for each.
+
+'''
+    tokenizer(text, padding="max_length", truncation=True, max_length=256)
+'''
+
+The max_length of 256 and subsequent truncation does cut off some data but my GPU (RTX 3070, 8gb VRam) was not able to handle anything larger with training batch size of 8. The padding is on the right as is recommended.
+
+
+## Training
+
+
+
+
+
+
+
+
 
 
 
