@@ -126,6 +126,10 @@ I think this is a fairly standard implementation of a transformers library train
 
 # Evaluation
 
+Explanation of confidence threshold:
+
+
+
 
 ## Amazon reviews classified to product category
 Model: bert-base-uncased
