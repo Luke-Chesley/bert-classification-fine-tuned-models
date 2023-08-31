@@ -1,5 +1,5 @@
 # Models
-Used the hugging face implementation of BERT/DistilBERT and fine tuned it to classify texts.
+Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
 ## bert-base-uncased
 From [https://huggingface.co/bert-base-uncased]:
@@ -26,7 +26,34 @@ From [https://huggingface.co/distilbert-base-uncased]
 
 Model size: 67M params
 
-##
+# Training
+
+For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. 
+
+'''
+def text_normalization_3(string):
+    contractions = {key.lower(): value for key, value in contractions_dict.items()}
+
+    fixed_string = string.lower()
+
+    fixed_string = fixed_string.replace(",", " ")
+
+    for word in fixed_string.split():
+        if word in contractions:
+            fixed_string = fixed_string.replace(word, contractions[word])
+
+    fixed_string = re.sub(r"[^a-zA-Z0-9\s]", " ", fixed_string)
+
+    fixed_string = re.sub(r"\n", " ", fixed_string)
+    fixed_string = re.sub(r"\s+", " ", fixed_string)
+    fixed_string = fixed_string.lower()
+    fixed_string = fixed_string.strip()
+
+    return fixed_string
+
+'''    
+
+
 
 
 
