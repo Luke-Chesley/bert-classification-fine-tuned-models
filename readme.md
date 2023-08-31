@@ -31,6 +31,7 @@ Model size: 67M params
 For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. 
 
 '''
+
 def text_normalization_3(string):
     contractions = {key.lower(): value for key, value in contractions_dict.items()}
 
