@@ -78,7 +78,7 @@ The max_length of 256 and subsequent truncation does cut off some data but my GP
 
 # Training
 
-I think this is a fairly standard implementation of a transformers library training loop. Mostly based on [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb]
+I think this is a fairly standard implementation of a transformers library training loop. Based on [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb]
 
 
 
@@ -100,24 +100,6 @@ I think this is a fairly standard implementation of a transformers library train
         metric_for_best_model=metric_name,
         # push_to_hub=True,
     )
-
-    def multi_label_metrics(
-        predictions, labels, threshold=0.5
-    ):  # threshold = confidence threshold, important. 0.5 doesnt always work
-        # first, apply sigmoid on predictions which are of shape (batch_size, num_labels)
-        sigmoid = torch.nn.Sigmoid()
-        probs = sigmoid(torch.Tensor(predictions))
-        # use threshold to turn them into int predictions
-        y_pred = np.zeros(probs.shape)
-        y_pred[np.where(probs >= threshold)] = 1
-        # compute metrics
-        y_true = labels
-        f1_micro_average = f1_score(y_true=y_true, y_pred=y_pred, average="micro")
-        roc_auc = roc_auc_score(y_true, y_pred, average="micro")
-        accuracy = accuracy_score(y_true, y_pred)
-        # return as dictionary
-        metrics = {"f1": f1_micro_average, "roc_auc": roc_auc, "accuracy": accuracy}
-        return metrics
 
 
     def compute_metrics(p: EvalPrediction):
