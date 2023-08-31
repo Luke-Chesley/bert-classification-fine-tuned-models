@@ -32,25 +32,25 @@ For review text data, I combined the title and review body for simplicity and se
 
 '''
 
-def text_normalization_3(string):
-    contractions = {key.lower(): value for key, value in contractions_dict.items()}
+    def text_normalization_3(string):
+        contractions = {key.lower(): value for key, value in contractions_dict.items()}
 
-    fixed_string = string.lower()
+        fixed_string = string.lower()
 
-    fixed_string = fixed_string.replace(",", " ")
+        fixed_string = fixed_string.replace(",", " ")
 
-    for word in fixed_string.split():
-        if word in contractions:
-            fixed_string = fixed_string.replace(word, contractions[word])
+        for word in fixed_string.split():
+            if word in contractions:
+                fixed_string = fixed_string.replace(word, contractions[word])
 
-    fixed_string = re.sub(r"[^a-zA-Z0-9\s]", " ", fixed_string)
+        fixed_string = re.sub(r"[^a-zA-Z0-9\s]", " ", fixed_string)
 
-    fixed_string = re.sub(r"\n", " ", fixed_string)
-    fixed_string = re.sub(r"\s+", " ", fixed_string)
-    fixed_string = fixed_string.lower()
-    fixed_string = fixed_string.strip()
+        fixed_string = re.sub(r"\n", " ", fixed_string)
+        fixed_string = re.sub(r"\s+", " ", fixed_string)
+        fixed_string = fixed_string.lower()
+        fixed_string = fixed_string.strip()
 
-    return fixed_string
+        return fixed_string
 
 '''    
 
