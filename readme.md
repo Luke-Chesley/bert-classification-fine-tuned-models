@@ -78,6 +78,10 @@ The max_length of 256 and subsequent truncation does cut off some data but my GP
 
 # Training
 
+I think this is a fairly standard implementation of a transformers library training loop. Mostly based on [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb]
+
+
+
 '''
 
     batch_size = 8
@@ -133,8 +137,14 @@ The max_length of 256 and subsequent truncation does cut off some data but my GP
 
     trainer.train()
 
+    trainer.evaluate()
+
 
 '''
+
+# Evaluation
+
+
 
 
 
