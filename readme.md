@@ -10,8 +10,8 @@ From [https://huggingface.co/bert-base-uncased]:
 >This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences, for instance, you can train a standard classifier using the features produced by the BERT model as inputs.
 
 Datasets used to train bert-base-uncased:
-*[https://huggingface.co/datasets/wikipedia] wikipedia articles
-*[https://huggingface.co/datasets/bookcorpus] collection of book texts
+* [https://huggingface.co/datasets/wikipedia] wikipedia articles
+* [https://huggingface.co/datasets/bookcorpus] collection of book texts
 
 Model size: 110M params
 
