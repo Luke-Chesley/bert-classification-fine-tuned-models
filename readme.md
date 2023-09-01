@@ -104,7 +104,7 @@ Training time: 2 hrs
 Number of classes: 30
 
 Results on unseen test data:
-![Results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
+![results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
 
 ![graph](images/bert-amazon-100k/output.png)
 
@@ -120,7 +120,7 @@ Number of classes: 30
 
 Results on unseen data:
 
-![Results_df](images/bert-amazon-10k/2023-09-01-092212_788x517_scrot.png)
+![results_df](images/bert-amazon-10k/2023-09-01-092212_788x517_scrot.png)
 
 ![graph](images/bert-amazon-10k/output.png)
 
@@ -137,7 +137,9 @@ Number of classes:  100
 
 Results on unseen test data:
 
-#########
+![results_df](images/distilbert-movie-plots/2023-09-01-095123_791x524_scrot.png)
+
+![graph](images/distilbert-movie-plots/output.png)
 
 
 ## News headlines classified to news category
