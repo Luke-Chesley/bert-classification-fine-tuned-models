@@ -91,6 +91,7 @@ The training loop I used was based on [this implementation](https://colab.resear
 
 These models are set up to return the probability of each text example belonging to each class. To convert to binary outcomes an arbitrary line in the sand must be drawn, everything above is a prediction, everything below is not. A very low threshold might return 3 or more predictions, the model is moderately sure the correct classification is included in the set of predictions, but the usefulness of this depends on the case. If classification into a single class is necessary, it will have to be manually classified anyway. Having a short list proves useful is this scenario. A high threshold returns a lower proportion of wrong predictions, but a much higher number of non predictions. In the case of single class classification, these non predictions would still have to be manually classified. The graphs below highlight this, and the right balance will have to be determined depending on the circumstances of each case. 
 
+The confidence threshold used in the training loop 0.5 for all of the models. Finding an optimal value for each use is a chance to improve the fine tuning, but has not been explored yet. 
 
 
 
@@ -167,6 +168,9 @@ Results on unseen test data:
 
 * Figure out better evaluation method
 
+* Training confidence threshold
+
+* In evaluation, test confidence thresholds from 0.01 to 0.1
 
 
 
