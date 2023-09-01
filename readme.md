@@ -1,6 +1,8 @@
 # Models
 Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
+Docs: [https://huggingface.co/docs/transformers/model_doc/bert]
+
 ## bert-base-uncased
 From [https://huggingface.co/bert-base-uncased]:
 >BERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labeling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts. More precisely, it was pretrained with two objectives:
@@ -11,7 +13,7 @@ From [https://huggingface.co/bert-base-uncased]:
 
 Datasets used to train bert-base-uncased:
 * [https://huggingface.co/datasets/wikipedia] English wikipedia 
-* [https://huggingface.co/datasets/bookcorpus] 11,038 unpublished(?) books
+* [https://huggingface.co/datasets/bookcorpus] 11,038 unpublished books
 
 Model size: 110M params
 
@@ -32,7 +34,7 @@ Model size: 67M params
 
 For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. (Still tweaking, this is current as of 8/31/23, what else to add?)
 
-Functionally includes:
+Current functionally:
 * Expanding contractions
 * Removing punctuation and any formatting characters
 * Lowercase
@@ -78,55 +80,14 @@ The max_length of 256 and subsequent truncation does cut off some data but my GP
 
 # Training
 
-I think this is a fairly standard implementation of a transformers library training loop. Based on [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb]
+The training loop I used was based on this implementation [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb] which I found linked in the transformers documentation. It might be sightly outdated and sub-optimal based on the depreciation warnings thrown but it gets the job done. 
 
-
-
-'''
-
-    batch_size = 8
-    metric_name = "f1"
-
-    args = TrainingArguments(
-        f"bert-finetuned-sem_eval-english",
-        evaluation_strategy="epoch",
-        save_strategy="epoch",
-        learning_rate=2e-5,
-        per_device_train_batch_size=batch_size,
-        per_device_eval_batch_size=batch_size,
-        num_train_epochs=5,
-        weight_decay=0.01,
-        load_best_model_at_end=True,
-        metric_for_best_model=metric_name,
-        # push_to_hub=True,
-    )
-
-
-    def compute_metrics(p: EvalPrediction):
-        preds = p.predictions[0] if isinstance(p.predictions, tuple) else p.predictions
-        result = multi_label_metrics(predictions=preds, labels=p.label_ids)
-        return result
-
-
-    trainer = Trainer(
-        model,
-        args,
-        train_dataset=encoded_dataset["train"],
-        eval_dataset=encoded_dataset["validation"],
-        tokenizer=tokenizer,
-        compute_metrics=compute_metrics,
-    )  
-
-    trainer.train()
-
-    trainer.evaluate()
-
-
-'''
 
 # Evaluation
 
 ### Explanation of confidence threshold:
+
+These models are set up to return the probability of each text example belonging to each class. To convert to binary outcomes an arbitrary line in the sand must be drawn, everything above is a prediction, everything below is not. A very low threshold might return 3 or more predictions, the model is moderately sure the correct classification is included in the set of predictions, but the usefulness of this depends on the case. If classification into a single class is necessary, it will have to be manually classified anyway. Having a short list proves useful is this scenario. A high threshold returns a lower proportion of wrong predictions, but a much higher number of non predictions. In the case of single class classification, these non predictions would still have to be manually classified. The graphs below highlight this, and the right balance will have to be determined depending on the circumstances of each case. 
 
 
 
@@ -143,7 +104,7 @@ Training time: 2 hrs
 Number of classes: 30
 
 Results on unseen test data:
-![Results_df](images/bert-amazon-100k/2023-08-31-152039_1267x523_scrot.png)
+![Results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
 
 ![graph](images/bert-amazon-100k/output.png)
 
