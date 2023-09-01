@@ -1,10 +1,10 @@
 # Models
 Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
-Docs: [https://huggingface.co/docs/transformers/model_doc/bert]
+[Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
 ## bert-base-uncased
-From [https://huggingface.co/bert-base-uncased]:
+From [huggingface website](https://huggingface.co/bert-base-uncased):
 >BERT is a transformers model pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labeling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts. More precisely, it was pretrained with two objectives:
 
 >Masked language modeling (MLM): taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This is different from traditional recurrent neural networks (RNNs) that usually see the words one after the other, or from autoregressive models like GPT which internally masks the future tokens. It allows the model to learn a bidirectional representation of the sentence.
@@ -12,14 +12,14 @@ From [https://huggingface.co/bert-base-uncased]:
 >This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences, for instance, you can train a standard classifier using the features produced by the BERT model as inputs.
 
 Datasets used to train bert-base-uncased:
-* [https://huggingface.co/datasets/wikipedia] English wikipedia 
-* [https://huggingface.co/datasets/bookcorpus] 11,038 unpublished books
+* [English wikipedia](https://huggingface.co/datasets/wikipedia) 
+* [11,038 unpublished books ](https://huggingface.co/datasets/bookcorpus)
 
 Model size: 110M params
 
 
 ## distilbert-base-uncased
-From [https://huggingface.co/distilbert-base-uncased]
+From [distilbert page](https://huggingface.co/distilbert-base-uncased)
 >DistilBERT is a transformers model, smaller and faster than BERT, which was pretrained on the same corpus in a self-supervised fashion, using the BERT base model as a teacher. This means it was pretrained on the raw texts only, with no humans labelling them in any way (which is why it can use lots of publicly available data) with an automatic process to generate inputs and labels from those texts using the BERT base model. More precisely, it was pretrained with three objectives:
 
 >Distillation loss: the model was trained to return the same probabilities as the BERT base model.
@@ -80,7 +80,7 @@ The max_length of 256 and subsequent truncation does cut off some data but my GP
 
 # Training
 
-The training loop I used was based on this implementation [https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb] which I found linked in the transformers documentation. It might be sightly outdated and sub-optimal based on the depreciation warnings thrown but it gets the job done. 
+The training loop I used was based on [this implementation](https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Fine_tuning_BERT_(and_friends)_for_multi_label_text_classification.ipynb) which I found linked in the transformers documentation. It might be sightly outdated and sub-optimal based on the depreciation warnings thrown but it gets the job done. 
 
 
 # Evaluation
@@ -157,6 +157,13 @@ Results on unseen test data:
 ![results_df](images/bert-news-headlines/2023-09-01-100855_808x520_scrot.png)
 
 ![graph](images/bert-news-headlines/output.png)
+
+
+# Things to do
+
+* Get RoBerta to work. [notebook](https://colab.research.google.com/github/DhavalTaunk08/NLP_scripts/blob/master/sentiment_analysis_using_roberta.ipynb)
+
+* Figure out better evaluation method
 
 
 
