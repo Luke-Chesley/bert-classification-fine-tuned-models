@@ -73,9 +73,7 @@ For each model I used the corresponding tokenizer from huggingface. I used the s
 
 '''
 
-
     tokenizer(text, padding="max_length", truncation=True, max_length=256)
-
 
 '''
 
