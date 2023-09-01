@@ -170,7 +170,7 @@ Results on unseen test data:
 
 * Training confidence threshold
 
-* In evaluation, test confidence thresholds from 0.01 to 0.1
+* In evaluation, test confidence thresholds from 0.01 to 0.1. Optimal value might lay in this range
 
 
 
