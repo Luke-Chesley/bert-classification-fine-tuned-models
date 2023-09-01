@@ -110,7 +110,7 @@ Results on unseen test data:
 
 
 
-Model: bert-base-uncased
+Model: bert-base-uncased (same as above with less training)
 
 Training size: 10k
 
@@ -120,7 +120,10 @@ Number of classes: 30
 
 Results on unseen data:
 
-##############
+![Results_df](images/bert-amazon-10k/2023-09-01-092212_788x517_scrot.png)
+
+![graph](images/bert-amazon-10k/output.png)
+
 
 
 ## Movie plots classified to genre
