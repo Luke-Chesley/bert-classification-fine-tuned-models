@@ -13,7 +13,7 @@ From [huggingface website](https://huggingface.co/bert-base-uncased):
 
 Datasets used to train bert-base-uncased:
 * [English wikipedia](https://huggingface.co/datasets/wikipedia) 
-* [11,038 unpublished books ](https://huggingface.co/datasets/bookcorpus)
+* [Book corpus](https://huggingface.co/datasets/bookcorpus)(11,038 unpublished books)
 
 Model size: 110M params
 
@@ -72,7 +72,11 @@ Next I made a dict of the classes to correspond with an int.
 For each model I used the corresponding tokenizer from huggingface. I used the same parameters for each.
 
 '''
+
+
     tokenizer(text, padding="max_length", truncation=True, max_length=256)
+
+
 '''
 
 The max_length of 256 and subsequent truncation does cut off some data but my GPU (RTX 3070, 8gb VRam) was not able to handle anything larger with training batch size of 8. The padding is on the right as is recommended.
