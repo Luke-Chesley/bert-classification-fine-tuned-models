@@ -126,7 +126,9 @@ I think this is a fairly standard implementation of a transformers library train
 
 # Evaluation
 
-Explanation of confidence threshold:
+### Explanation of confidence threshold:
+
+
 
 
 
@@ -163,7 +165,7 @@ Results on unseen data:
 ## Movie plots classified to genre
 Model: distilbert-base-uncased
 
-Training size: ###########
+Training size: 18244
 
 Training time: 12 mins
 
@@ -178,7 +180,7 @@ Results on unseen test data:
 
 Model: bert-base-uncased
 
-Training size: #########
+Training size: 18750
 
 Training time: 24 mins
 
