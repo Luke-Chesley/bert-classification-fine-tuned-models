@@ -154,7 +154,9 @@ Number of classes:  41
 
 Results on unseen test data:
 
-#########
+![results_df](images/bert-news-headlines/2023-09-01-100855_808x520_scrot.png)
+
+![graph](images/bert-news-headlines/output.png)
 
 
 
