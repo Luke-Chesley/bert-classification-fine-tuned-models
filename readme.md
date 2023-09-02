@@ -1,7 +1,7 @@
 # Architecture
 Models: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
-*Structure*: 
+**Structure**: 
 
 * Normalize text
 * Split into train/test/validation and format to datasets
@@ -22,9 +22,6 @@ From [huggingface website](https://huggingface.co/bert-base-uncased):
 >Next sentence prediction (NSP): the models concatenates two masked sentences as inputs during pretraining. Sometimes they correspond to sentences that were next to each other in the original text, sometimes not. The model then has to predict if the two sentences were following each other or not.
 >This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks: if you have a dataset of labeled sentences, for instance, you can train a standard classifier using the features produced by the BERT model as inputs.
 
-Datasets used to train bert-base-uncased:
-* [English wikipedia](https://huggingface.co/datasets/wikipedia) 
-* [Book corpus](https://huggingface.co/datasets/bookcorpus)(11,038 unpublished books)
 
 Model size: 110M params
 
@@ -38,6 +35,11 @@ From [distilbert page](https://huggingface.co/distilbert-base-uncased)
 >Cosine embedding loss: the model was also trained to generate hidden states as close as possible as the BERT base model. This way, the model learns the same inner representation of the English language than its teacher model, while being faster for inference or downstream tasks.
 
 Model size: 67M params
+
+
+Datasets used to train bert and distilbert:
+* [English wikipedia](https://huggingface.co/datasets/wikipedia) 
+* [Book corpus](https://huggingface.co/datasets/bookcorpus)(11,038 unpublished books)
 
 
 
@@ -104,6 +106,9 @@ These models are set up to return the probability of each text example belonging
 
 The confidence threshold used in the training loop 0.5 for all of the models. Finding an optimal value for each use is a chance to improve the fine tuning, but has not been explored yet. 
 
+### Explanation of multi-guess penalty
+
+At low confidence thresholds the model can return many predictions for each example. I wanted a way to include this in the evaluation as it is not useful if the model is just predicting every class for each example. The formula is 0.9^(number of classes guessed). For 2 guesses it would score a 0.81 instead of a 1, for 3 guesses 0.73, 4 guesses 0.65, etc. This is arbitrary, constant values from 0.8 to 0.9 gave a decent representation of performance. It quickly converges with the correct category at thresholds above 0.3 or so because the model starts returning only 1 prediction.
 
 
 
@@ -182,6 +187,9 @@ Results on unseen test data:
 * Training confidence threshold
 
 * In evaluation, test confidence thresholds from 0.01 to 0.1. Optimal value might lay in this range
+
+
+
 
 
 
