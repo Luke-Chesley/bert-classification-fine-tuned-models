@@ -1,5 +1,5 @@
-# Architecture
-Models: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
+# Overview
+**Models**: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
 **Structure**: 
 
@@ -12,7 +12,7 @@ Models: Used the hugging face implementation of BERT/DistilBERT and fine tuned t
 
 
 
-[Docs](https://huggingface.co/docs/transformers/model_doc/bert)
+[Bert Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
 ## bert-base-uncased
 From [huggingface website](https://huggingface.co/bert-base-uncased):
@@ -45,7 +45,7 @@ Datasets used to train bert and distilbert:
 
 # Preprocessing
 
-For review text data, I combined the title and review body for simplicity and sent that through a text_normalization function. (Still tweaking, this is current as of 8/31/23, what else to add?)
+For review text data, I combined the title and review body for simplicity and sent that through a text normalization function. (Still tweaking, current as of 8/31/23)
 
 Current functionally:
 * Expanding contractions
@@ -100,7 +100,7 @@ The training loop I used was based on [this implementation](https://colab.resear
 
 # Evaluation
 
-### Explanation of confidence threshold:
+### Explanation of confidence threshold
 
 These models are set up to return the probability of each text example belonging to each class. To convert to binary outcomes an arbitrary line in the sand must be drawn, everything above is a prediction, everything below is not. A very low threshold might return 3 or more predictions, the model is moderately sure the correct classification is included in the set of predictions, but the usefulness of this depends on the case. If classification into a single class is necessary, it will have to be manually classified anyway. Having a short list proves useful is this scenario. A high threshold returns a lower proportion of wrong predictions, but a much higher number of non predictions. In the case of single class classification, these non predictions would still have to be manually classified. The graphs below highlight this, and the right balance will have to be determined depending on the circumstances of each case. 
 
@@ -108,7 +108,7 @@ The confidence threshold used in the training loop 0.5 for all of the models. Fi
 
 ### Explanation of multi-guess penalty
 
-At low confidence thresholds the model can return many predictions for each example. I wanted a way to include this in the evaluation as it is not useful if the model is just predicting every class for each example. The formula is 0.9^(number of classes guessed). For 2 guesses it would score a 0.81 instead of a 1, for 3 guesses 0.73, 4 guesses 0.65, etc. This is arbitrary, constant values from 0.8 to 0.9 gave a decent representation of performance. It quickly converges with the correct category at thresholds above 0.3 or so because the model starts returning only 1 prediction.
+At low confidence thresholds the model can return many predictions for each example. I wanted a way to include this in the evaluation as it is not useful if the model is predicting every class for each example. The formula is 0.9^(number of classes guessed). For 2 guesses it would score a 0.81 instead of a 1, for 3 guesses 0.73, 4 guesses 0.65, etc. This is arbitrary, constant values from 0.8 to 0.9 gave a decent representation of performance. It quickly converges with the correct category at thresholds above 0.3 or so because the model starts returning only 1 prediction.
 
 
 
