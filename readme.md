@@ -1,7 +1,7 @@
 # Architecture
 Models: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
-Structure: 
+*Structure*: 
 
 * Normalize text
 * Split into train/test/validation and format to datasets
