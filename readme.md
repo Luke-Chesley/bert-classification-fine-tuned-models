@@ -1,5 +1,16 @@
-# Models
-Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
+# Architecture
+Models: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
+
+Structure: 
+
+* Normalize text
+* Split into train/test/validation and format to datasets
+* Tokenize text
+* Train base model to get fine-tuned model
+* Evaluate on unseen data
+* Hyperparameter search 
+
+
 
 [Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
