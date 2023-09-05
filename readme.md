@@ -209,21 +209,6 @@ Results on unseen test data:
 
 * Get RoBerta to work. [notebook](https://colab.research.google.com/github/DhavalTaunk08/NLP_scripts/blob/master/sentiment_analysis_using_roberta.ipynb)
 
-* Figure out better evaluation method
-
 * Training confidence threshold
 
 * In evaluation, test confidence thresholds from 0.01 to 0.1. Optimal value might lay in this range
-
-
-
-
-
-
-
-
-
-
-
-
-

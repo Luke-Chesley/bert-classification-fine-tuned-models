@@ -47,7 +47,8 @@ def text_normalization_3(string):
 
     return fixed_string
 
-###############################################3
+###############################################
+
 
 # Make predictions using a trained model
 def predict_class(text, tokenizer, trainer, id2label, CONFIDENCE_THRESHOLD=0.5):
