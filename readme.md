@@ -122,6 +122,14 @@ Training time: 2 hrs
 
 Number of classes: 30
 
+trainer.evaluate() output:
+eval loss: 0.083
+eval f1: 0.523
+eval roc acc: 0.711
+eval accuracy: 0.428
+
+
+
 Results on unseen test data:
 ![results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
 
@@ -129,13 +137,20 @@ Results on unseen test data:
 
 
 
-Model: bert-base-uncased (same as above with less training)
+Model: bert-base-uncased (same as above with less training data)
 
 Training size: 10k
 
-Training time: 20 mins
+Training time: 12 mins
 
 Number of classes: 30
+
+trainer.evaluate() output:
+eval loss: 0.105
+eval f1: 0.227
+eval roc acc: 0.567
+eval accuracy: 0.136
+
 
 Results on unseen data:
 
@@ -154,6 +169,12 @@ Training time: 12 mins
 
 Number of classes:  100
 
+trainer.evaluate() output:
+eval loss: 0.031
+eval f1: 0.398
+eval roc acc: 0.648
+eval accuracy: 0.299
+
 Results on unseen test data:
 
 ![results_df](images/distilbert-movie-plots/2023-09-01-095123_791x524_scrot.png)
@@ -170,6 +191,12 @@ Training size: 18750
 Training time: 24 mins
 
 Number of classes:  41
+
+trainer.evaluate() output:
+eval loss: 0.0537
+eval f1: 0.595
+eval roc acc: 0.743
+eval accuracy: 0.490
 
 Results on unseen test data:
 
