@@ -214,3 +214,5 @@ Results on unseen test data:
 * In evaluation, test confidence thresholds from 0.01 to 0.1. Optimal value might lay in this range
  
  * Deberta notebook working, needs to be trained on more data. Takes much longer than bert to train due to batch size being cut in half to avoid memory errors. 
+
+ * Deberta-v2 is too big to fit on this machine even with batch size = 1
