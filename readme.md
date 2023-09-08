@@ -1,14 +1,34 @@
 # Overview
 **Models**: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
-**Structure**: 
+**Structure**:
 
-* Normalize text
-* Split into train/test/validation and format to datasets
-* Tokenize text
-* Train base model to get fine-tuned model
-* Evaluate on unseen data
-* Hyperparameter search 
+```mermaid
+flowchart TD;
+    A[Load in and normalize text] --> B[Split into transformers datasets]
+    B --> X[Pick and instantiate model]
+    X --> C[Tokenize text]
+    C --> D[Train base model]
+    D --> E[Evaluate on unseen data]
+    E --> F[Optimize hyperparameters]
+    
+    D --hyperparams--- S([Learning rate, batch size, num epochs, weight decay, evaluation metric, etc... ])
+
+    C --hyperparams--- Y([padding, max_length, truncation])
+    
+    
+    X -- options--- Z([Bert, Distilbert, Roberta, GPT, etc..])
+    
+
+
+
+
+    
+
+
+```
+
+
 
 
 
@@ -45,36 +65,14 @@ Datasets used to train bert and distilbert:
 
 # Preprocessing
 
-For review text data, I combined the title and review body for simplicity and sent that through a text normalization function. (Still tweaking, current as of 8/31/23)
+For review text data, I combined the title and review body for simplicity and sent that through a text normalization function.
 
 Current functionally:
 * Expanding contractions
 * Removing punctuation and any formatting characters
 * Lowercase
 
-'''
 
-    def text_normalization_3(string):
-        contractions = {key.lower(): value for key, value in contractions_dict.items()}
-
-        fixed_string = string.lower()
-
-        fixed_string = fixed_string.replace(",", " ")
-
-        for word in fixed_string.split():
-            if word in contractions:
-                fixed_string = fixed_string.replace(word, contractions[word])
-
-        fixed_string = re.sub(r"[^a-zA-Z0-9\s]", " ", fixed_string)
-
-        fixed_string = re.sub(r"\n", " ", fixed_string)
-        fixed_string = re.sub(r"\s+", " ", fixed_string)
-        fixed_string = fixed_string.lower()
-        fixed_string = fixed_string.strip()
-
-        return fixed_string
-
-'''    
 
 I then one hot encoded the classes and converted that pandas df into a dataset from the datasets library with a train,test, and validation dataset. These are easier to us than pandas with the transformers library for training. 
 
@@ -84,11 +82,11 @@ Next I made a dict of the classes to correspond with an int.
 
 For each model I used the corresponding tokenizer from huggingface. I used the same parameters for each.
 
-'''
+
 
     tokenizer(text, padding="max_length", truncation=True, max_length=256)
 
-'''
+
 
 The max_length of 256 and subsequent truncation does cut off some data but my GPU (RTX 3070, 8gb VRam) was not able to handle anything larger with training batch size of 8. The padding is on the right as is recommended.
 
