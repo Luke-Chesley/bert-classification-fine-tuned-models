@@ -103,7 +103,15 @@ At low confidence thresholds the model can return many predictions for each exam
 
 
 ## Amazon reviews classified to product category
+
+
+Data Example:
+| Review | Product category |
+| :--------: | :-------: |
+| perfect just what i needed perfect for western theme party | apparel |
+
 Model: bert-base-uncased
+
 
 Training size: 100k
 
@@ -120,6 +128,7 @@ trainer.evaluate() output:
 
 
 Results on unseen test data:
+
 ![results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
 
 ![graph](images/bert-amazon-100k/output.png)
@@ -150,6 +159,13 @@ Results on unseen data:
 
 
 ## Movie plots classified to genre
+
+Data Example:
+| Text | Genre |
+| :--------: | :-------: |
+| three schoolgirls are infatuated with a yakuza...	 | crime |
+
+
 Model: distilbert-base-uncased
 
 Training size: 18244
@@ -172,6 +188,11 @@ Results on unseen test data:
 
 
 ## News headlines classified to news category
+
+Data Example:
+| Text | Genre |
+| :--------: | :-------: |
+| tips for your child s first summer sleep away ...	.	 | PARENTS |
 
 Model: bert-base-uncased
 
