@@ -119,7 +119,7 @@ Training time: 2 hrs
 
 Number of classes: 30
 
-trainer.evaluate() output:
+Evaluation dataset results:
 * eval loss: 0.083
 * eval f1: 0.523
 * eval roc acc: 0.711
@@ -143,7 +143,7 @@ Training time: 12 mins
 
 Number of classes: 30
 
-trainer.evaluate() output:
+Evaluation dataset results:
 * eval loss: 0.105
 * eval f1: 0.227
 * eval roc acc: 0.567
@@ -174,7 +174,7 @@ Training time: 12 mins
 
 Number of classes:  100
 
-trainer.evaluate() output:
+Evaluation dataset results:
 * eval loss: 0.031
 * eval f1: 0.398
 * eval roc acc: 0.648
@@ -202,7 +202,7 @@ Training time: 24 mins
 
 Number of classes:  41
 
-trainer.evaluate() output:
+Evaluation dataset results:
 * eval loss: 0.0537
 * eval f1: 0.595
 * eval roc acc: 0.743
