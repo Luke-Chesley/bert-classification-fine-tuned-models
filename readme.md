@@ -1,5 +1,5 @@
 # Overview
-**Models**: Used the hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
+**Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
 **Structure**:
 
