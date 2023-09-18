@@ -135,7 +135,7 @@ Evaluation dataset results:
 
 
 
-Results on unseen test data:
+Results on unseen test data(%):
 
 ![results_df](images/bert-amazon-100k/2023-09-01-090913_802x522_scrot.png)
 
@@ -158,7 +158,7 @@ Evaluation dataset results:
 * eval accuracy: 0.136
 
 
-Results on unseen data:
+Results on unseen data(%):
 
 ![results_df](images/bert-amazon-10k/2023-09-01-092212_788x517_scrot.png)
 
@@ -188,7 +188,7 @@ Evaluation dataset results:
 * eval roc acc: 0.648
 * eval accuracy: 0.299
 
-Results on unseen test data:
+Results on unseen test data(%):
 
 ![results_df](images/distilbert-movie-plots/2023-09-01-095123_791x524_scrot.png)
 
@@ -216,7 +216,7 @@ Evaluation dataset results:
 * eval roc acc: 0.743
 * eval accuracy: 0.490
 
-Results on unseen test data:
+Results on unseen test data(%):
 
 ![results_df](images/bert-news-headlines/2023-09-01-100855_808x520_scrot.png)
 
