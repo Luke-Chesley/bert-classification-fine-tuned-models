@@ -6,11 +6,19 @@
 ```mermaid
 flowchart TD;
     A[Load in and normalize text] --> B[Split into transformers datasets]
+
+
     B --> X[Pick and instantiate model]
     X --> C[Tokenize text]
     C --> D[Train base model]
     D --> E[Evaluate on unseen data]
     E --> F[Optimize hyperparameters]
+
+    A --datasets used--- newLines(["Amazon reviews classified to product category
+                                                    Movie plots classified to genre
+                                                    News headlines classified to news category "])
+    
+
     
     D --hyperparams--- S([Learning rate, batch size, num epochs, weight decay, evaluation metric, etc... ])
 
