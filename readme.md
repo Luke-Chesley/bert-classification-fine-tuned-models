@@ -4,7 +4,7 @@
 **Structure**
 
 ```mermaid
-flowchart TD;
+flowchart TD
     A[Load in and normalize text] --> B[Split into transformers datasets]
 
 
