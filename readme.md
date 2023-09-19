@@ -1,7 +1,7 @@
 # Overview
 **Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
 
-**Structure**:
+**Structure**
 
 ```mermaid
 flowchart TD;
