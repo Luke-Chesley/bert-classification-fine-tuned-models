@@ -1,5 +1,5 @@
 # Overview
-**Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts.
+**Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts. [Bert Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
 **Structure**:
 
@@ -31,7 +31,7 @@ flowchart TD
 ```
 
 
-[Bert Docs](https://huggingface.co/docs/transformers/model_doc/bert)
+
 
 ## bert-base-uncased
 From [huggingface website](https://huggingface.co/bert-base-uncased):
