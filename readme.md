@@ -1,7 +1,7 @@
 # Overview
 **Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts. [Bert Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
-[Article](http://jalammar.github.io/illustrated-bert/) that explains how bert style model work. 
+[Article](http://jalammar.github.io/illustrated-bert/) that explains how bert style models work. 
 
 **Structure**:
 
