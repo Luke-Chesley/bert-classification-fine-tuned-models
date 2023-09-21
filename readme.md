@@ -1,6 +1,8 @@
 # Overview
 **Models**: Hugging face implementation of BERT/DistilBERT and fine tuned them to classify texts. [Bert Docs](https://huggingface.co/docs/transformers/model_doc/bert)
 
+[Article](http://jalammar.github.io/illustrated-bert/) that explains how bert style model work. 
+
 **Structure**:
 
 ```mermaid
@@ -103,15 +105,35 @@ These models are set up to return the probability of each text example belonging
 
 The confidence threshold used in the training loop 0.5 for all of the models. Finding an optimal value for each use is a chance to improve the fine tuning, but has not been explored yet. 
 
+
+
 ### Explanation of multi-guess penalty
 
 The way the accuracy of each model is calculated is correct predictions get a 1 and incorrect predictions get a 0. At low confidence thresholds the model can return many predictions for each example. I wanted a way to include this in the evaluation as it is not useful if the model is predicting every class for each example which inflates the accuracy. The formula is 0.9^(number of classes guessed). For 2 guesses it would score a 0.81 instead of a 1, for 3 guesses 0.73, 4 guesses 0.65, etc. This is arbitrary, constant values from 0.8 to 0.9 gave a decent representation of performance. It quickly converges with the correct category at thresholds above 0.3 or so because the model starts returning only 1 prediction.
+
+### Explanation of following dataframe column names
+threshold: Confidence threshold
+
+correct: The correct class was included in the classes returned by the model.
+
+correct_discount: This is the multi-guess penalty, explained above.
+
+correct_non_preds: The correct class was returned OR no prediction was made. No prediction is better than a wrong one in some cases so this was accounted for.
+
+non_preds: No prediction was made
+
+wrong_preds: A prediction was made and the correct class was NOT returned by the model. 
 
 
 
 
 ## Amazon reviews classified to product category
 
+Corresponding notebooks:
+
+Initial fine-tuning: [train_bert_model.ipynb](train_bert_model.ipynb)
+
+Loading and evaluation: [loaded_fine_tuned_bert.ipynb](loaded_fine_tuned_bert.ipynb)
 
 Data Example:
 | Review | Product category |
@@ -167,6 +189,10 @@ Results on unseen data(%):
 
 
 ## Movie plots classified to genre
+Corresponding notebooks:
+
+[movie_plots.ipynb](movie_plots.ipynb)
+
 
 Data Example:
 | Text | Genre |
@@ -196,6 +222,9 @@ Results on unseen test data(%):
 
 
 ## News headlines classified to news category
+Corresponding notebooks:
+
+[news_headlines.ipynb](news_headlines.ipynb)
 
 Data Example:
 | Text | Genre |
