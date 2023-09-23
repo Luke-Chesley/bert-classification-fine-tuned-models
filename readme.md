@@ -263,3 +263,7 @@ Results on unseen test data(%):
  * Deberta notebook working, needs to be trained on more data. Takes much longer than bert to train due to batch size being cut in half to avoid memory errors. 
 
  * Deberta-v2 is too big to fit on this machine even with batch size = 1
+
+ * Pre-train on engineering corpus? [notebook](https://thepythoncode.com/article/pretraining-bert-huggingface-transformers-in-python)
+
+ 
